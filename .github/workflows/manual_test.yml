@@ -28,7 +28,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Clone the repo as a base for testing
         run: git clone https://github.com/joernott/localcache --branch main --single-branch testfolder
-
+      - name: Debug: Show folder content
+        run: |
+          find /home/runner/work/localcache
       - name: Cache current installation
         uses: ./localcache
         with:
