@@ -28,7 +28,7 @@ jobs:
         run: git clone https://github.com/joernott/localcache --branch master --single-branch testfolder
 
       - name: Cache current installation
-        uses: joernott/localcache
+        uses: ./localcache
         with:
           path: |
             ./testfolder
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Restore cached folder
-        uses: joernott/localcache
+        uses: ./localcache
         with:
           path: |
             ./testfolder
