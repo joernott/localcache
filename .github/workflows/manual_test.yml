@@ -12,20 +12,22 @@ on:
           - debug
       cache_url:
         description: 'Point to the URL of your simple upload server'
-        required: true
+        required: false
         type: string
         default: ''
       cache_token:
         description: 'Token for authentication with your simple upload server'
-        required: true
+        required: false
         type: string
         default: ''
 jobs:
   create_cached_element:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Clone the repo as a base for testing
-        run: git clone https://github.com/joernott/localcache --branch master --single-branch testfolder
+        run: git clone https://github.com/joernott/localcache --branch main --single-branch testfolder
 
       - name: Cache current installation
         uses: ./localcache
@@ -38,6 +40,8 @@ jobs:
   restore_cached_element:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Restore cached folder
         uses: ./localcache
         with:
@@ -50,4 +54,4 @@ jobs:
           cache_token: ${{ inputs.cache_token }}
       - name: Show folder content
         run: |
-          find .
+          find ./testfolder
