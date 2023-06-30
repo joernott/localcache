@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
+      log_level:
         description: 'Log level'
         required: true
         default: 'warning'
@@ -20,12 +20,17 @@ on:
         required: false
         type: string
         default: ''
-jobs:
+jobs:  
   create_cached_element:
     strategy:
       max-parallel: 1
     runs-on: ubuntu-latest
     steps:
+      - name: Output Job Parameters
+        run: |
+          echo "log_level='${{ inputs.log_level }}'"
+          echo "cache_url='${{ inputs.cache_url }}'"
+          echo "cache_token='${{ inputs.cache_token }}'"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Clone the repo as a base for testing
@@ -46,6 +51,11 @@ jobs:
       max-parallel: 1
     runs-on: ubuntu-latest
     steps:
+      - name: Output Job Parameters
+        run: |
+          echo "log_level='${{ inputs.log_level }}'"
+          echo "cache_url='${{ inputs.cache_url }}'"
+          echo "cache_token='${{ inputs.cache_token }}'"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Restore cached folder
