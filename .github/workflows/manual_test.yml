@@ -22,6 +22,8 @@ on:
         default: ''
 jobs:
   create_cached_element:
+    strategy:
+      max-parallel: 1
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -40,6 +42,8 @@ jobs:
           cache_url: ${{ inputs.cache_url }}
           cache_token: ${{ inputs.cache_token }}
   restore_cached_element:
+    strategy:
+      max-parallel: 1
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

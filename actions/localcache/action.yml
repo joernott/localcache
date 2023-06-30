@@ -64,10 +64,3 @@ runs:
         enableCrossOsArchive: ${{ inputs.enableCrossOsArchive }}
         fail-on-cache-miss: ${{ inputs.fail-on-cache-miss }}
         lookup-only: ${{ inputs.lookup-only }}
-  using: 'node16'
-  main: 'dist/restore/index.js'
-  post: 'dist/save/index.js'
-  post-if: success()
-branding:
-  icon: 'archive'
-  color: 'gray-dark'
