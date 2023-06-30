@@ -40,8 +40,8 @@ runs:
   using: "composite"
   steps:
     - name: Use our local cache
-      run: localcache.sh
-      if: ${{ inputs.cache_url}} != ''
+      run: ./localcache.sh
+      if: inputs.cache_url != ''
       shell: bash
       env:
         cache_url: ${{ inputs.cache_url }}
@@ -55,7 +55,7 @@ runs:
         lookup-only: ${{ inputs.lookup-only }}
     - name: Use github @cache action if no cache_url is provided
       uses: actions/cache@v3
-      if: ${{ inputs.cache_url}} == ''
+      if: inputs.cache_url == ''
       with:
         path: ${{ inputs.path }}
         key: ${{ inputs.key }}
