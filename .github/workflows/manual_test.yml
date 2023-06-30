@@ -28,11 +28,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Clone the repo as a base for testing
         run: git clone https://github.com/joernott/localcache --branch main --single-branch testfolder
-      - name: Debug folder content
+      - name: Show folder content
         run: |
           find /home/runner/work/localcache
       - name: Cache current installation
-        uses: ./localcache
+        uses: ./actions/localcache
         with:
           path: |
             ./testfolder
@@ -45,7 +45,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Restore cached folder
-        uses: ./localcache
+        uses: ./actions/localcache
         with:
           path: |
             ./testfolder
