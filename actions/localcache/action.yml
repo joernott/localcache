@@ -40,9 +40,7 @@ runs:
   using: "composite"
   steps:
     - name: Use our local cache
-      run: |
-        pwd
-        ./localcache.sh
+      run: ${GITHUB_ACTION_PATH}/localcache.sh
       if: inputs.cache_url != ''
       shell: bash
       env:
