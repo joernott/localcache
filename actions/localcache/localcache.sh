@@ -30,7 +30,7 @@ function upload() {
         exit 1
     fi
     url="${cache_url}/upload?token=${cache_token}"
-    RESULT=$(curl -Ffile=@"${archive_name}" "${url}")
+    RESULT=$(curl -sSf -Ffile=@"${archive_name}" "${url}")
     echo "::notice::Upload result ${RESULT}"
 }
 
@@ -45,12 +45,13 @@ function download() {
     fi
     basename=$(basename "${archive_name}")
     url="${cache_url}/files/${basename}?token=${cache_token}"
-    curl -sS "${url}" -o "${archive_name}"
+    curl -sSf "${url}" -o "${archive_name}"
 }
 
 if [ "${restore_keys}" == "" ]; then
     get_archive_name
     generate_archive
+    upload
 else
     get_archive_name
     download
