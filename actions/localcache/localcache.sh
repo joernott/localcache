@@ -13,7 +13,7 @@ function generate_archive() {
         echo "::error::path must not be empty"
         exit 1
     fi
-    tar -czf "${archive_name}" ${path}
+    tar -cpPzf "${archive_name}" ${path}
 }
 
 function restore_from_archive() {
