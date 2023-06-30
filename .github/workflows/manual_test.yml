@@ -22,8 +22,6 @@ on:
         default: ''
 jobs:  
   create_cached_element:
-    strategy:
-      max-parallel: 1
     runs-on: ubuntu-latest
     steps:
       - name: Output Job Parameters
@@ -47,8 +45,7 @@ jobs:
           cache_url: ${{ inputs.cache_url }}
           cache_token: ${{ inputs.cache_token }}
   restore_cached_element:
-    strategy:
-      max-parallel: 1
+    needs: create_cached_element
     runs-on: ubuntu-latest
     steps:
       - name: Output Job Parameters
